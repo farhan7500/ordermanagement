@@ -46,6 +46,7 @@ public class UserServiceImpl implements UserService{
             Authority authority = new Authority(user.getEmail(), "ROLE_" + role);
             authorityRepository.save(authority);
         }
+        System.out.println("I am done registering");
         return new RegisterUserResponse(user.getName(), user.getEmail(), user.getRoles());
     }
 
