@@ -1,20 +1,29 @@
 package com.nomani.ordermanagement.entity;
 
-import jakarta.persistence.Embeddable;
-import jakarta.persistence.Entity;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
 
 @Entity
 @Table(name = "authorities")
+@Getter
+@Setter
+@NoArgsConstructor
 public class Authority {
-    @Embeddable
-    public class EntityPropertyPK {
-        @Column(name = "name")
-        private String name;
+    @Id
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
+    @Column(name = "id")
+    private long id;
 
-        @ManyToOne
-        @JoinColumn(name = "entity_id")
-        private Entity entity;
+    @Column(name = "username")
+    private String username;
 
+    @Column(name = "authority")
+    private String role;
+
+    public Authority(String username, String role) {
+        this.username = username;
+        this.role = role;
     }
 }

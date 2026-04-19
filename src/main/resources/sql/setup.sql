@@ -31,8 +31,11 @@ VALUES
 --
 
 CREATE TABLE `authorities` (
+                               `id` int NOT NULL AUTO_INCREMENT,
                                `username` varchar(50) NOT NULL,
                                `authority` varchar(50) NOT NULL,
+                               PRIMARY KEY (`id`),
+                               UNIQUE KEY `id_UNIQUE` (`id`),
                                UNIQUE KEY `authorities_idx_1` (`username`,`authority`),
                                CONSTRAINT `authorities_ibfk_1` FOREIGN KEY (`username`) REFERENCES `users` (`username`)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
@@ -43,10 +46,10 @@ CREATE TABLE `authorities` (
 
 INSERT INTO `authorities`
 VALUES
-    ('farhan','ROLE_ADMIN'),
-    ('winnie','ROLE_USER'),
-    ('rayan','ROLE_USER'),
-    ('farhan','ROLE_USER');
+    (null,'farhan','ROLE_ADMIN'),
+    (null, 'winnie','ROLE_USER'),
+    (null, 'rayan','ROLE_USER'),
+    (null, 'farhan','ROLE_USER');
 
 CREATE TABLE `product` (
                            `id` int NOT NULL AUTO_INCREMENT,
@@ -57,4 +60,3 @@ CREATE TABLE `product` (
                            PRIMARY KEY (`id`),
                            UNIQUE KEY `id_UNIQUE` (`id`)
 )
-

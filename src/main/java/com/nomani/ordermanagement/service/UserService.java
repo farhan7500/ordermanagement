@@ -1,9 +1,11 @@
 package com.nomani.ordermanagement.service;
 
 
+import com.nomani.ordermanagement.dto.RegisterUserRequest;
+import com.nomani.ordermanagement.dto.RegisterUserResponse;
 import com.nomani.ordermanagement.dto.UserDto;
 import com.nomani.ordermanagement.entity.User;
 
 public interface UserService {
-    UserDto createUser(User user);
+    RegisterUserResponse registerUser(RegisterUserRequest user);
 }
