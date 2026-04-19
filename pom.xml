@@ -42,6 +42,13 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-security</artifactId>
 		</dependency>
+		<!-- Source: https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-aspectj -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-aspectj</artifactId>
+			<version>4.0.5</version>
+			<scope>compile</scope>
+		</dependency>
 <!--		&lt;!&ndash; Source: https://mvnrepository.com/artifact/org.springframework.security/spring-security-crypto &ndash;&gt;-->
 <!--		<dependency>-->
 <!--			<groupId>org.springframework.security</groupId>-->
