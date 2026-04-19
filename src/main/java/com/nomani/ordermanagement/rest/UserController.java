@@ -4,10 +4,8 @@ import com.nomani.ordermanagement.dto.RegisterUserRequest;
 import com.nomani.ordermanagement.dto.RegisterUserResponse;
 import com.nomani.ordermanagement.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.http.HttpStatus;
+import org.springframework.web.bind.annotation.*;
 
 @RestController
 @RequestMapping("/auth")
@@ -19,6 +17,7 @@ public class UserController {
         this.userService = userService;
     }
 
+    @ResponseStatus(HttpStatus.CREATED)
     @PostMapping("/signup")
     public RegisterUserResponse signup(@RequestBody RegisterUserRequest user) {
         System.out.println(user);

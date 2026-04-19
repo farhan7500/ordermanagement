@@ -3,6 +3,9 @@ package com.nomani.ordermanagement.service;
 import com.nomani.ordermanagement.dao.ProductRepository;
 import com.nomani.ordermanagement.dto.ProductDto;
 import com.nomani.ordermanagement.entity.Product;
+import com.nomani.ordermanagement.exceptions.BadRequestException;
+import com.nomani.ordermanagement.exceptions.ResourceNotFoundException;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -12,6 +15,7 @@ import java.util.List;
 import java.util.Optional;
 
 @Service
+@Slf4j
 public class ProductServiceImpl implements ProductService{
     private final ProductRepository productRepository;
 
@@ -22,6 +26,7 @@ public class ProductServiceImpl implements ProductService{
 
     @Override
     public List<ProductDto> findAll() {
+        log.info("Listing all products");
         List<ProductDto> productDtos = new ArrayList<>();
         for(Product product : productRepository.findAll()) {
             productDtos.add(
@@ -48,14 +53,14 @@ public class ProductServiceImpl implements ProductService{
                     product.getStock()
             );
         }
-        throw new RuntimeException("Product does not exist");
+        throw new ResourceNotFoundException("Product not found. ID: " + id);
     }
 
     @Override
     @Transactional
     public ProductDto save(Product product) {
         if(!this.validateIncomingProduct(product)) {
-            throw new RuntimeException("Stock/Price cannot be null or less than 0");
+            throw new BadRequestException("Unable to validate the product");
         }
 
         Product createdProduct = productRepository.save(product);
